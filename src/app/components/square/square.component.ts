@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Piece } from '../../models/piece.model';
 
 @Component({
   selector: 'app-square',
@@ -10,11 +11,7 @@ import { Component, Input } from '@angular/core';
 export class SquareComponent {
   @Input() row = 0;
   @Input() col = 0;
-  piece = ''
-
-  printRowCol(){
-    console.log(this.row, this.col);
-  }
+  piece: Piece | undefined = undefined;
 
   isWhite(){
     return (this.row + this.col) % 2 === 0;
