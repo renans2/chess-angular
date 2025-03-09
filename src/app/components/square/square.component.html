@@ -1,7 +1,10 @@
-<button class="w-full h-full border-2 border-black cursor-pointer"  
+<button (click)="handleClick()"
+        class="w-full h-full border-2 border-black cursor-pointer flex relative"  
         [ngClass]="{
             'bg-white': isWhite(), 
-            'bg-black': !isWhite(),
+            'bg-blue-950': !isWhite(),
         }">
+        <img [src]="getPieceImage()"
+             class="absolute w-full">
 </button>
 

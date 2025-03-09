@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { SquareComponent } from '../square/square.component';
-import { Piece } from '../../models/piece.model';
 
 @Component({
   selector: 'app-board',
@@ -11,6 +10,4 @@ import { Piece } from '../../models/piece.model';
 export class BoardComponent {
   rows = Array.from({ length: 8 });
   cols = Array.from({ length: 8 });
-
-  board: (Piece | undefined)[][] = Array.from({ length: 8 }, () => Array(8).fill(undefined));
 }
