@@ -1,4 +1,4 @@
-<div class="grid grid-cols-8 h-[min(100vw,80vh)] w-[min(100vw,80vh)]">
+<div class="grid grid-cols-8 h-[min(100vw,80vh)] w-[min(100vw,80vh)] border-4 border-black">
     @for (item of rows; let row = $index; track row){
         @for (item of cols; let col = $index; track col){
             <app-square [row]="row" [col]="col"/>
