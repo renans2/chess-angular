@@ -3,15 +3,16 @@ import { Piece } from '../models/piece.model';
 import { Square } from '../models/square.model';
 import { PieceType } from '../models/piece-type.enum';
 import { images } from './images';
+import { Color } from '../models/color.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  board: (Piece | undefined)[][] = Array.from({ length: 8 }, () => Array(8).fill(undefined));
+  board: (Piece | null)[][] = Array.from({ length: 8 }, () => Array(8).fill(null));
   originSquare: Square | undefined;
   dstSquare: Square | undefined;
-  currentPlayer: "white" | "black" = "white";
+  currentPlayer: Color = "white";
 
   constructor() { 
     this.fillBoard();
