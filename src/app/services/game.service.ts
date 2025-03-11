@@ -3,7 +3,7 @@ import { Piece } from '../models/piece.model';
 import { Square } from '../models/square.model';
 import { PieceType } from '../models/piece-type.enum';
 import { images } from './images';
-import { Color } from '../models/color.enum';
+import { Color } from '../models/color.type';
 
 @Injectable({
   providedIn: 'root'

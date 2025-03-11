@@ -1,4 +1,4 @@
-import { Color } from "./color.enum";
+import { Color } from "./color.type";
 import { PieceType } from "./piece-type.enum";
 
 export interface Piece {
