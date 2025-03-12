@@ -12,7 +12,8 @@ export class GameService {
   board: (Piece | null)[][] = Array.from({ length: 8 }, () => Array(8).fill(null));
   originSquare: Square | undefined;
   dstSquare: Square | undefined;
-  currentPlayer: Color = "white";
+  possibleMoves: (Square | undefined)[] = [];
+  currentPlayer: Color = 'white';
 
   constructor() { 
     this.fillBoard();
@@ -20,15 +21,48 @@ export class GameService {
   }
 
   squareClick(square: Square): void {
-    if(this.originSquare === undefined){
+    if(this.originSquare === undefined && this.playerCanClick(square)){
       this.originSquare = square
-    } else {
+      this.setPossibleMoves();
+    } else if(this.originSquare !== undefined && this.possibleMoves.includes(square)) {
       this.dstSquare = square
+      this.makePlay();
     }
   }
 
   getPieceImage(square: Square): string | undefined {
     return this.board[square.row][square.col]?.image;
+  }
+
+  resetGame(): void {
+    this.fillBoard();
+    this.originSquare = undefined;
+    this.dstSquare = undefined;
+    this.currentPlayer = 'white';
+    this.possibleMoves = [];
+  }
+
+  playerCanClick(square: Square): boolean {
+    const squareInBoard = this.board[square.row][square.col];
+    return squareInBoard?.color === this.currentPlayer;
+  }
+
+  playerCanMove(square: Square): boolean {
+    
+    return true;
+  }
+
+  setPossibleMoves(): void {
+
+  }
+
+  makePlay(): void {
+    this.originSquare = undefined;
+    this.dstSquare = undefined;
+  }
+
+  pawnPlay(): void {
+
   }
 
   fillBoard(): void {
