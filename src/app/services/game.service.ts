@@ -9,9 +9,10 @@ import { Color } from '../models/color.type';
   providedIn: 'root'
 })
 export class GameService {
-  board: (Piece | null)[][] = Array.from({ length: 8 }, () => Array(8).fill(null));
+  board: (Piece | undefined)[][] = Array.from({ length: 8 }, () => Array(8).fill(null));
   originSquare: Square | undefined;
   dstSquare: Square | undefined;
+  selectedPiece: Piece | undefined;
   possibleMoves: (Square | undefined)[] = [];
   currentPlayer: Color = 'white';
 
@@ -22,7 +23,8 @@ export class GameService {
 
   squareClick(square: Square): void {
     if(this.originSquare === undefined && this.playerCanClick(square)){
-      this.originSquare = square
+      this.originSquare = square;
+      this.selectedPiece = this.board[square.row][square.col]; 
       this.setPossibleMoves();
     } else if(this.originSquare !== undefined && this.possibleMoves.includes(square)) {
       this.dstSquare = square
@@ -40,11 +42,13 @@ export class GameService {
     this.dstSquare = undefined;
     this.currentPlayer = 'white';
     this.possibleMoves = [];
+
   }
 
   playerCanClick(square: Square): boolean {
-    const squareInBoard = this.board[square.row][square.col];
-    return squareInBoard?.color === this.currentPlayer;
+    const pieceInBoard = this.board[square.row][square.col];
+    return pieceInBoard !== undefined && 
+           pieceInBoard.color === this.currentPlayer;
   }
 
   playerCanMove(square: Square): boolean {
@@ -53,7 +57,14 @@ export class GameService {
   }
 
   setPossibleMoves(): void {
-
+    switch (this.selectedPiece?.type) {
+      case PieceType.Bishop:
+        this.possibleMoves = this.getBishopMoves();
+        break;
+    
+      default:
+        break;
+    }
   }
 
   makePlay(): void {
@@ -61,8 +72,28 @@ export class GameService {
     this.dstSquare = undefined;
   }
 
-  pawnPlay(): void {
+  getBishopMoves(): Square[] {
+    return [];
+  }
 
+  getPawnMoves(): Square[] {
+    return [];
+  }
+
+  getKingMoves(): Square[] {
+    return [];
+  }
+
+  getQueenMoves(): Square[] {
+    return [];
+  }
+
+  getKnightMoves(): Square[] {
+    return [];
+  }
+
+  getRookMoves(): Square[] {
+    return [];
   }
 
   fillBoard(): void {
