@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { GameService } from '../../services/game.service';
+import { Piece } from '../../models/piece.model';
 
 @Component({
   selector: 'app-square',
@@ -12,6 +13,7 @@ export class SquareComponent {
   @Input() row = 0;
   @Input() col = 0;
   gameService = inject(GameService);
+  piece: Piece | undefined
 
   isWhite(){
     return (this.row + this.col) % 2 === 0;
@@ -22,12 +24,5 @@ export class SquareComponent {
       row: this.row,
       col: this.col,
     });
-  }
-
-  getPieceImage(): string | undefined {
-    return this.gameService.getPieceImage({
-      row: this.row, 
-      col: this.col}
-    );
   }
 }
